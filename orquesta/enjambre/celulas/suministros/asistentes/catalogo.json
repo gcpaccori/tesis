@@ -1,0 +1,18 @@
+[
+  {
+    "assistant_id": "GH-1",
+    "purpose": "operar en paralelo sobre repositorios, ramas, PRs y artefactos"
+  },
+  {
+    "assistant_id": "GH-2",
+    "purpose": "operar en paralelo sobre repositorios, ramas, PRs y artefactos"
+  },
+  {
+    "assistant_id": "GH-3",
+    "purpose": "operar en paralelo sobre repositorios, ramas, PRs y artefactos"
+  },
+  {
+    "assistant_id": "GH-4",
+    "purpose": "operar en paralelo sobre repositorios, ramas, PRs y artefactos"
+  }
+]

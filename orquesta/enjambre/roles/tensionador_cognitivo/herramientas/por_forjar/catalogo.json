@@ -1,0 +1,6 @@
+[
+  {
+    "name": "inyector_escenarios_extremos",
+    "need": "simular usos extremos sin tocar sistemas reales"
+  }
+]

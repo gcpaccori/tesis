@@ -1,0 +1,10 @@
+[
+  {
+    "name": "regla_memoria_limpia",
+    "purpose": "valida lo que entra al conocimiento corporativo"
+  },
+  {
+    "name": "score_trazabilidad",
+    "purpose": "mide si una decision esta bien sustentada"
+  }
+]

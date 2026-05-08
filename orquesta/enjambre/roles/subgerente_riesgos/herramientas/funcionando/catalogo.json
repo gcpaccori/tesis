@@ -1,0 +1,10 @@
+[
+  {
+    "name": "matriz_riesgo",
+    "purpose": "ordena frentes por impacto, severidad y urgencia"
+  },
+  {
+    "name": "score_bloqueos",
+    "purpose": "mide costo de seguir o detener una linea"
+  }
+]

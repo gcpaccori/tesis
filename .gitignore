@@ -1,0 +1,41 @@
+# Dependencias y builds locales
+node_modules/
+dist/
+.venv/
+.pytest_cache/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Runtime, datos locales y logs
+backend/data/
+data/
+logs/
+*.log
+*.db
+*.sqlite
+*.sqlite3
+frontend/dev-check.png
+
+# Secretos y configuracion local
+.env
+.env.*
+!.env.example
+!**/.env.example
+!**/secrets.local.example
+
+# Modelos/pesos grandes
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+
+# Datasets con URLs firmadas o datos sensibles
+hongos-suillus*.ndjson
+
+# Sistema operativo/editor
+.DS_Store
+Thumbs.db
+.vscode-pixel-agents-dev*/

@@ -1,0 +1,6 @@
+[
+  {
+    "name": "sentry_gateway",
+    "need": "probar saltos de frontera y rutas ambiguas"
+  }
+]

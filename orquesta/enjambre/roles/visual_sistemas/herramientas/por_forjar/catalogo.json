@@ -1,0 +1,6 @@
+[
+  {
+    "name": "tablero_vivo_operativo",
+    "need": "conectar estado del enjambre a una UI persistente"
+  }
+]

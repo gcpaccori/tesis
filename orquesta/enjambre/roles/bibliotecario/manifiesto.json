@@ -1,0 +1,19 @@
+{
+  "session_id": "bibliotecario",
+  "display_name": "Bibliotecario Mayor",
+  "role_key": "librarian",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "BIBLIOTECARIO",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_coder",
+  "model_name": "Qwen3.5-7B-Coder",
+  "conversation_style": "curator_precise",
+  "leader_session_id": "subgerente-etica",
+  "max_helpers": 5,
+  "responsibilities": [
+    "guardar conocimiento reutilizable",
+    "separar oro de ruido",
+    "mantener memoria especifica de empresa"
+  ]
+}

@@ -1,0 +1,10 @@
+[
+  {
+    "name": "mapa_oportunidades",
+    "purpose": "encuentra el siguiente empuje con mejor retorno"
+  },
+  {
+    "name": "ruta_entrega",
+    "purpose": "ordena dependencias para destrabar avance visible"
+  }
+]

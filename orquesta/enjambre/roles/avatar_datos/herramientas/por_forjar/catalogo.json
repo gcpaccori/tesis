@@ -1,0 +1,6 @@
+[
+  {
+    "name": "detector_deriva_esquema",
+    "need": "comparar snapshots de esquemas a lo largo del tiempo"
+  }
+]

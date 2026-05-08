@@ -1,0 +1,19 @@
+{
+  "session_id": "subgerente-trafico-datos",
+  "display_name": "Subgerente de Trafico y Datos",
+  "role_key": "submanager_traffic_data",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "DATOS",
+  "is_team_lead": false,
+  "role_family": "submanager",
+  "model_tier": "submanager",
+  "model_name": "Qwen3.5-14B-A2.4B-8bit",
+  "conversation_style": "sistemico_dependencias",
+  "leader_session_id": "director-liquido",
+  "max_helpers": 4,
+  "responsibilities": [
+    "alinear datos, gateway e integracion",
+    "mantener a backend con infraestructura valida",
+    "bajar dependencias duras antes de ejecutar pruebas"
+  ]
+}

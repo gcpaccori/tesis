@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "vAbS79kx8Kc=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ptic252\\Documents\\GitHub\\Nueva carpeta\\deploy\\langflow-qa\\qa-runner\\QaRunner.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ptic252\\.nuget\\packages\\neo4j.driver\\5.28.1\\neo4j.driver.5.28.1.nupkg.sha512",
+    "C:\\Users\\ptic252\\.nuget\\packages\\system.io.pipelines\\8.0.0\\system.io.pipelines.8.0.0.nupkg.sha512",
+    "C:\\Users\\ptic252\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.24\\microsoft.netcore.app.ref.8.0.24.nupkg.sha512",
+    "C:\\Users\\ptic252\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.24\\microsoft.windowsdesktop.app.ref.8.0.24.nupkg.sha512",
+    "C:\\Users\\ptic252\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.24\\microsoft.aspnetcore.app.ref.8.0.24.nupkg.sha512",
+    "C:\\Users\\ptic252\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.24\\microsoft.netcore.app.host.win-x64.8.0.24.nupkg.sha512"
+  ],
+  "logs": []
+}

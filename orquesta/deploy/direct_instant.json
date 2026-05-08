@@ -1,0 +1,1 @@
+{"model":"kimi-k2.6-vllm","messages":[{"role":"system","content":"Modo instantaneo. Responde solo contenido final, sin razonamiento."},{"role":"user","content":"Di FINAL: hola en una linea."}],"temperature":0.1,"max_tokens":80,"stream":false,"chat_template_kwargs":{"thinking":false}}

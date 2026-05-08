@@ -1,0 +1,6 @@
+[
+  {
+    "name": "sonda_consistencia_sql",
+    "need": "verificar consistencia y huellas de datos"
+  }
+]

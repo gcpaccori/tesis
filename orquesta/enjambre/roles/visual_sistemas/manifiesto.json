@@ -1,0 +1,19 @@
+{
+  "session_id": "visual-sistemas",
+  "display_name": "Especialista Visual",
+  "role_key": "visual",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "VISUAL",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_coder",
+  "model_name": "Qwen3.5-7B-Coder",
+  "conversation_style": "diagrammatic_storyteller",
+  "leader_session_id": "subgerente-crecimiento",
+  "max_helpers": 5,
+  "responsibilities": [
+    "dibujar flujos",
+    "explicar estado del enjambre",
+    "armar vistas para gerencia"
+  ]
+}

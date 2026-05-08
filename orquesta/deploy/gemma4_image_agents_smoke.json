@@ -1,0 +1,9 @@
+{
+  "message": "Activa 6 agentes Gemma para etiquetado defensivo de imagenes. Crea roles: intake visual, OCR, objetos, calidad de etiqueta, consistencia dataset y auditor final. Cada agente debe describir que herramienta/mini-entorno ejecutaria y que evidencia deja. No inventes imagen si no se adjunta: pide ruta o URL exacta.",
+  "mode": "swarm",
+  "max_tokens": 512,
+  "planner_tokens": 700,
+  "swarm_width": 0,
+  "max_agents": 6,
+  "run_sandbox_probe": true
+}

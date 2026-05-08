@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orquesta Cognitiva Local</title>
+  <style>
+    :root {
+      --bg: #0b1216;
+      --panel: rgba(10, 18, 24, 0.86);
+      --panel-2: rgba(18, 31, 40, 0.96);
+      --line: rgba(138, 181, 163, 0.24);
+      --text: #eff7f2;
+      --muted: #97aa9f;
+      --accent: #9fe870;
+      --accent-2: #61d6c6;
+      --user: #12353a;
+      --assistant: #17242d;
+      --danger: #ff876d;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(159, 232, 112, 0.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(97, 214, 198, 0.14), transparent 28%),
+        linear-gradient(160deg, #071016 0%, #0b1216 45%, #111a20 100%);
+      font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+    }
+
+    .shell {
+      width: min(1100px, calc(100vw - 24px));
+      margin: 22px auto;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 18px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      backdrop-filter: blur(12px);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .sidebar {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .brand {
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(159, 232, 112, 0.16), rgba(97, 214, 198, 0.08));
+      border: 1px solid rgba(159, 232, 112, 0.18);
+    }
+
+    .brand h1 {
+      margin: 0 0 6px;
+      font-size: 1.15rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .brand p,
+    .hint,
+    .status-note {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .label {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    input,
+    textarea,
+    button {
+      font: inherit;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(151, 170, 159, 0.18);
+      background: rgba(7, 14, 18, 0.94);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 120ms ease, transform 120ms ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: rgba(159, 232, 112, 0.58);
+      transform: translateY(-1px);
+    }
+
+    textarea {
+      min-height: 112px;
+      resize: vertical;
+      line-height: 1.45;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 16px;
+      cursor: pointer;
+      transition: transform 120ms ease, opacity 120ms ease, background 120ms ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      cursor: wait;
+      opacity: 0.7;
+    }
+
+    .primary {
+      color: #071016;
+      background: linear-gradient(135deg, var(--accent), #d8ff96);
+      font-weight: 700;
+    }
+
+    .secondary {
+      color: var(--text);
+      background: rgba(26, 42, 52, 0.95);
+      border: 1px solid rgba(151, 170, 159, 0.18);
+    }
+
+    .danger {
+      color: #2a100f;
+      background: linear-gradient(135deg, #ffb1a0, var(--danger));
+      font-weight: 700;
+    }
+
+    .chat {
+      min-height: calc(100vh - 44px);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .chat-header h2 {
+      margin: 0;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .status-pill {
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: #091014;
+      background: linear-gradient(135deg, var(--accent-2), #b2fff1);
+      font-size: 0.8rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .message {
+      max-width: min(88%, 780px);
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(151, 170, 159, 0.16);
+      line-height: 1.5;
+      white-space: pre-wrap;
+      animation: rise 180ms ease-out;
+    }
+
+    .message.user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, rgba(18, 53, 58, 0.96), rgba(13, 37, 46, 0.98));
+    }
+
+    .message.assistant {
+      align-self: flex-start;
+      background: linear-gradient(135deg, rgba(23, 36, 45, 0.98), rgba(16, 28, 38, 0.94));
+    }
+
+    .meta {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(151, 170, 159, 0.14);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .composer {
+      border-top: 1px solid var(--line);
+      padding: 18px;
+      background: linear-gradient(180deg, rgba(11, 18, 22, 0.7), rgba(11, 18, 22, 0.96));
+    }
+
+    .composer-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: end;
+    }
+
+    .empty {
+      margin: auto;
+      max-width: 620px;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1.6;
+      padding: 22px;
+      border: 1px dashed rgba(151, 170, 159, 0.18);
+      border-radius: 18px;
+      background: rgba(12, 20, 26, 0.64);
+    }
+
+    .error {
+      color: #ffd5cf;
+      background: rgba(120, 27, 17, 0.18);
+      border: 1px solid rgba(255, 135, 109, 0.35);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    code {
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.95em;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 920px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .chat {
+        min-height: 72vh;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100vw - 12px, 1100px);
+        margin: 6px auto;
+      }
+
+      .panel {
+        border-radius: 18px;
+      }
+
+      .composer-row {
+        grid-template-columns: 1fr;
+      }
+
+      .message {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <aside class="panel sidebar">
+      <section class="brand">
+        <h1>Orquesta Cognitiva</h1>
+        <p>Ventana local para hablar con el director, usar memoria de grafos y ver que especialistas entraron en cada turno.</p>
+      </section>
+
+      <div class="field">
+        <label class="label" for="sessionId">Sesion</label>
+        <input id="sessionId" type="text" spellcheck="false">
+        <p class="hint">La sesion se guarda en tu navegador. Si cambias este valor, creas un hilo de memoria distinto.</p>
+      </div>
+
+      <div class="field">
+        <span class="label">Atajos</span>
+        <div class="button-row">
+          <button class="secondary" id="newSessionBtn" type="button">Nueva sesion</button>
+          <button class="secondary" id="seedPromptBtn" type="button">Prompt base</button>
+          <button class="danger" id="clearChatBtn" type="button">Limpiar vista</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="label">Estado</span>
+        <p class="status-note" id="statusNote">Comprobando servicio...</p>
+      </div>
+
+      <div class="field">
+        <span class="label">Ruta</span>
+        <p class="hint"><code>POST /chat</code> para conversar, <code>GET /health</code> para salud y <code>GET /memory/search?q=...</code> para inspeccion.</p>
+      </div>
+    </aside>
+
+    <section class="panel chat">
+      <header class="chat-header">
+        <div>
+          <h2>Chat Local</h2>
+          <p class="status-note">Habla con el director de la orquesta en este mismo puerto.</p>
+        </div>
+        <div class="status-pill" id="servicePill">Conectando</div>
+      </header>
+
+      <div class="messages" id="messages">
+        <div class="empty" id="emptyState">
+          Esta interfaz usa la memoria persistente de la orquesta. Escribe una instruccion como:
+          <br><br>
+          <code>recuerdame los pilares centrales de esta arquitectura</code>
+        </div>
+      </div>
+
+      <footer class="composer">
+        <div class="field">
+          <label class="label" for="messageInput">Mensaje</label>
+          <div class="composer-row">
+            <textarea id="messageInput" placeholder="Escribe aqui tu mensaje. Enter envia, Shift+Enter agrega salto."></textarea>
+            <button class="primary" id="sendBtn" type="button">Enviar</button>
+          </div>
+        </div>
+        <div id="errorBox" class="error" hidden></div>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    const storageKey = "orquesta-chat-ui";
+    const sessionInput = document.getElementById("sessionId");
+    const messageInput = document.getElementById("messageInput");
+    const messagesEl = document.getElementById("messages");
+    const emptyStateEl = document.getElementById("emptyState");
+    const sendBtn = document.getElementById("sendBtn");
+    const clearChatBtn = document.getElementById("clearChatBtn");
+    const newSessionBtn = document.getElementById("newSessionBtn");
+    const seedPromptBtn = document.getElementById("seedPromptBtn");
+    const statusNote = document.getElementById("statusNote");
+    const servicePill = document.getElementById("servicePill");
+    const errorBox = document.getElementById("errorBox");
+
+    const state = {
+      sessionId: "",
+      messages: [],
+      busy: false,
+    };
+
+    function createSessionId() {
+      return "sesion-" + Math.random().toString(36).slice(2, 10);
+    }
+
+    function loadState() {
+      const raw = localStorage.getItem(storageKey);
+      if (!raw) {
+        state.sessionId = createSessionId();
+        return;
+      }
+      try {
+        const parsed = JSON.parse(raw);
+        state.sessionId = parsed.sessionId || createSessionId();
+        state.messages = Array.isArray(parsed.messages) ? parsed.messages : [];
+      } catch {
+        state.sessionId = createSessionId();
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(storageKey, JSON.stringify({
+        sessionId: state.sessionId,
+        messages: state.messages,
+      }));
+    }
+
+    function renderMessages() {
+      messagesEl.querySelectorAll(".message").forEach((node) => node.remove());
+
+      if (!state.messages.length) {
+        emptyStateEl.hidden = false;
+        return;
+      }
+
+      emptyStateEl.hidden = true;
+      for (const item of state.messages) {
+        const wrapper = document.createElement("article");
+        wrapper.className = `message ${item.role}`;
+
+        const body = document.createElement("div");
+        body.textContent = item.content;
+        wrapper.appendChild(body);
+
+        if (item.meta) {
+          const meta = document.createElement("div");
+          meta.className = "meta";
+          meta.innerHTML = item.meta;
+          wrapper.appendChild(meta);
+        }
+
+        messagesEl.appendChild(wrapper);
+      }
+
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function setBusy(nextBusy) {
+      state.busy = nextBusy;
+      sendBtn.disabled = nextBusy;
+      sendBtn.textContent = nextBusy ? "Pensando..." : "Enviar";
+    }
+
+    function showError(message) {
+      if (!message) {
+        errorBox.hidden = true;
+        errorBox.textContent = "";
+        return;
+      }
+      errorBox.hidden = false;
+      errorBox.textContent = message;
+    }
+
+    function pushMessage(role, content, meta = "") {
+      state.messages.push({ role, content, meta });
+      saveState();
+      renderMessages();
+    }
+
+    async function checkHealth() {
+      try {
+        const response = await fetch("/health");
+        if (!response.ok) {
+      throw new Error("Servicio no disponible");
+        }
+        const data = await response.json();
+        statusNote.textContent = `Modelo: ${data.model} | Nodos: ${data.memory.nodes} | Memorias: ${data.memory.memories}`;
+        servicePill.textContent = "Activo";
+      } catch (error) {
+        statusNote.textContent = "No pude confirmar /health en este momento.";
+        servicePill.textContent = "Sin salud";
+      }
+    }
+
+    async function sendMessage() {
+      if (state.busy) {
+        return;
+      }
+
+      const message = messageInput.value.trim();
+      const sessionId = sessionInput.value.trim();
+      if (!message || !sessionId) {
+        showError("Necesito un mensaje y una sesion valida para enviar.");
+        return;
+      }
+
+      state.sessionId = sessionId;
+      saveState();
+      showError("");
+      pushMessage("user", message);
+      messageInput.value = "";
+      setBusy(true);
+
+      try {
+        const response = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message,
+            session_id: state.sessionId,
+          }),
+        });
+
+        if (!response.ok) {
+          const text = await response.text();
+          throw new Error(text || "Fallo la llamada a /chat");
+        }
+
+        const data = await response.json();
+        const meta = [
+          `Roles: ${data.selected_specialists.join(", ") || "Director"}`,
+          `Memoria: ${data.memory_write.summary || "sin resumen"}`,
+        ].join("<br>");
+        pushMessage("assistant", data.answer, meta);
+        await checkHealth();
+      } catch (error) {
+        showError(error.message || "No pude enviar el mensaje.");
+      } finally {
+        setBusy(false);
+        messageInput.focus();
+      }
+    }
+
+    function clearViewOnly() {
+      state.messages = [];
+      saveState();
+      renderMessages();
+      showError("");
+    }
+
+    function startNewSession() {
+      state.sessionId = createSessionId();
+      sessionInput.value = state.sessionId;
+      clearViewOnly();
+    }
+
+    function seedPrompt() {
+      messageInput.value = "Usa la memoria y resumeme los pilares centrales de esta orquesta y lo que dejamos para despues.";
+      messageInput.focus();
+    }
+
+    sendBtn.addEventListener("click", sendMessage);
+    clearChatBtn.addEventListener("click", clearViewOnly);
+    newSessionBtn.addEventListener("click", startNewSession);
+    seedPromptBtn.addEventListener("click", seedPrompt);
+
+    sessionInput.addEventListener("change", () => {
+      state.sessionId = sessionInput.value.trim() || createSessionId();
+      sessionInput.value = state.sessionId;
+      saveState();
+    });
+
+    messageInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+
+    loadState();
+    sessionInput.value = state.sessionId;
+    renderMessages();
+    checkHealth();
+    messageInput.focus();
+  </script>
+</body>
+</html>

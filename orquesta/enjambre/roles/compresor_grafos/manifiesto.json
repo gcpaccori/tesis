@@ -1,0 +1,19 @@
+{
+  "session_id": "compresor-grafos",
+  "display_name": "Compresor de Grafos",
+  "role_key": "graph_compressor",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "COMPRESOR",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_math",
+  "model_name": "Qwen3.5-7B-Math",
+  "conversation_style": "compression_sparse",
+  "leader_session_id": "bibliotecario",
+  "max_helpers": 2,
+  "responsibilities": [
+    "comprimir grafos",
+    "podar ruido sin perder historia",
+    "destilar relaciones utiles"
+  ]
+}

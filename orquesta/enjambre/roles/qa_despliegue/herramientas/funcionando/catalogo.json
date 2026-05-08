@@ -1,0 +1,10 @@
+[
+  {
+    "name": "checklist_qa",
+    "purpose": "asegura prerrequisitos del slot QA"
+  },
+  {
+    "name": "rollback_seed",
+    "purpose": "deja rollback minimo documentado"
+  }
+]

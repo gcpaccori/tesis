@@ -1,0 +1,6 @@
+[
+  {
+    "name": "comparador_release_qa",
+    "need": "comparar rama candidata, QA y artefactos finales"
+  }
+]

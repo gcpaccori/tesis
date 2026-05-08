@@ -1,0 +1,10 @@
+[
+  {
+    "name": "radar_supervision",
+    "purpose": "vigila retrasos, huecos y exceso de idle"
+  },
+  {
+    "name": "reencuadre_delegacion",
+    "purpose": "redistribuye trabajo sin romper foco"
+  }
+]

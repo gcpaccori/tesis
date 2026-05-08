@@ -1,0 +1,19 @@
+{
+  "session_id": "github-cosechador",
+  "display_name": "Cosechador GitHub",
+  "role_key": "github_fetcher",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "GITHUB",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_coder",
+  "model_name": "Qwen3.5-7B-Coder",
+  "conversation_style": "recolector_concreto",
+  "leader_session_id": "subgerente-crecimiento",
+  "max_helpers": 5,
+  "responsibilities": [
+    "extraer contexto desde repos y PRs",
+    "construir vista de cambios recientes",
+    "proveer artefactos a QA y liderazgo"
+  ]
+}

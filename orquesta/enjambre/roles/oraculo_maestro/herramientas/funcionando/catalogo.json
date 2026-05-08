@@ -1,0 +1,10 @@
+[
+  {
+    "name": "mapa_contexto_global",
+    "purpose": "resume arquitectura, negocio y objetivos"
+  },
+  {
+    "name": "lookup_contexto",
+    "purpose": "contesta dudas puntuales del enjambre"
+  }
+]

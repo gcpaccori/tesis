@@ -1,0 +1,4 @@
+{
+  "label": "Secretario Gateway",
+  "function": "watchdog de TTL y recoleccion de procesos muertos"
+}

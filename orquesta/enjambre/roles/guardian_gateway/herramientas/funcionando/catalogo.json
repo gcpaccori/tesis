@@ -1,0 +1,10 @@
+[
+  {
+    "name": "matriz_rutas_gateway",
+    "purpose": "lista rutas, destinos y politicas"
+  },
+  {
+    "name": "radar_tokens",
+    "purpose": "revisa frontera de auth y expiraciones"
+  }
+]

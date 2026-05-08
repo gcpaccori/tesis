@@ -1,0 +1,6 @@
+[
+  {
+    "name": "pipeline_iis_guard",
+    "need": "automatizar despliegue seguro en IIS sin tocar produccion"
+  }
+]

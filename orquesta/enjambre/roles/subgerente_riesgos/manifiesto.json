@@ -1,0 +1,19 @@
+{
+  "session_id": "subgerente-riesgos",
+  "display_name": "Subgerente de Riesgos",
+  "role_key": "submanager_risk",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "RIESGOS",
+  "is_team_lead": false,
+  "role_family": "submanager",
+  "model_tier": "submanager",
+  "model_name": "Qwen3.5-14B-A2.4B-8bit",
+  "conversation_style": "critico_conservador",
+  "leader_session_id": "director-liquido",
+  "max_helpers": 4,
+  "responsibilities": [
+    "priorizar backlog por impacto y severidad",
+    "pedir evidencia antes de cantar victoria",
+    "escalar bloqueos duros al Director"
+  ]
+}

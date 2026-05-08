@@ -1,0 +1,10 @@
+[
+  {
+    "name": "mapa_repo",
+    "purpose": "resume estructura, ramas y archivos fuente"
+  },
+  {
+    "name": "captura_prs",
+    "purpose": "recoge discusiones, reviewers y ramas candidatas"
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "name": "mapa_dependencias_duro",
+    "purpose": "detecta precondiciones entre datos, gateway y backend"
+  },
+  {
+    "name": "control_fronteras",
+    "purpose": "vigila limites entre sistemas y contratos"
+  }
+]

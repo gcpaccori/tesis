@@ -1,0 +1,10 @@
+[
+  {
+    "name": "linea_tiempo_incidentes",
+    "purpose": "ordena incidentes y dependencias"
+  },
+  {
+    "name": "evidencia_raiz",
+    "purpose": "conecta errores con modulos y sintomas"
+  }
+]

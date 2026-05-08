@@ -1,0 +1,6 @@
+[
+  {
+    "name": "pruner_grafo_empresa",
+    "need": "podar aristas debiles sin perder linaje"
+  }
+]

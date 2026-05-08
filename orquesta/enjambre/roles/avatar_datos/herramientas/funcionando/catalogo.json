@@ -1,0 +1,10 @@
+[
+  {
+    "name": "atlas_esquemas",
+    "purpose": "ubica tablas, vistas, llaves y relaciones"
+  },
+  {
+    "name": "lookup_tablas",
+    "purpose": "resuelve donde vive una entidad sin tocar datos reales"
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "name": "indice_empresa",
+    "purpose": "resume conocimiento estable del negocio"
+  },
+  {
+    "name": "bitacora_hallazgos",
+    "purpose": "guarda decisiones y evidencias reutilizables"
+  }
+]

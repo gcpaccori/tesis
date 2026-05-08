@@ -1,0 +1,19 @@
+{
+  "session_id": "qa-despliegue",
+  "display_name": "Capataz QA",
+  "role_key": "qa_deployer",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "QA",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_coder",
+  "model_name": "Qwen3.5-7B-Coder",
+  "conversation_style": "procedural_careful",
+  "leader_session_id": "subgerente-riesgos",
+  "max_helpers": 5,
+  "responsibilities": [
+    "armar checklist de despliegue a QA",
+    "dejar rollback visible",
+    "coordinar slot y evidencia"
+  ]
+}

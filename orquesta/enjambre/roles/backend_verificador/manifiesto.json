@@ -1,0 +1,19 @@
+{
+  "session_id": "backend-verificador",
+  "display_name": "Verificador Backend",
+  "role_key": "backend_validator",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "BACKEND",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_coder",
+  "model_name": "Qwen3.5-7B-Coder",
+  "conversation_style": "surgical_api",
+  "leader_session_id": "subgerente-riesgos",
+  "max_helpers": 5,
+  "responsibilities": [
+    "revisar endpoints y contratos",
+    "detectar regresiones del backend",
+    "pedir a datos o gateway lo que falte"
+  ]
+}

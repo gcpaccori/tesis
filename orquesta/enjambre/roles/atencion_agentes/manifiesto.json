@@ -1,0 +1,19 @@
+{
+  "session_id": "atencion-agentes",
+  "display_name": "Atencion a Agentes",
+  "role_key": "agent_attendant",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "SOPORTE",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_math",
+  "model_name": "Qwen3.5-7B-Math",
+  "conversation_style": "supportive_router",
+  "leader_session_id": "bibliotecario",
+  "max_helpers": 2,
+  "responsibilities": [
+    "atender bloqueos",
+    "canalizar contexto faltante",
+    "resolver handoffs entre celulas"
+  ]
+}

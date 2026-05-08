@@ -1,0 +1,1 @@
+{"message":"Smoke rapido vLLM: crea 1 especialista llamado Verificador, forja una herramienta segura, ejecuta consola y responde FINAL en menos de 5 lineas.","mode":"swarm","max_tokens":256,"planner_tokens":400,"swarm_width":1,"max_agents":1,"run_sandbox_probe":true}

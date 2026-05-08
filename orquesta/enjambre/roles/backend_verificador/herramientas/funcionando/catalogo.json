@@ -1,0 +1,10 @@
+[
+  {
+    "name": "matriz_endpoints",
+    "purpose": "lista rutas, metodos y contratos esperados"
+  },
+  {
+    "name": "trazador_dependencias",
+    "purpose": "ubica capas y llamadas internas"
+  }
+]

@@ -1,0 +1,10 @@
+[
+  {
+    "name": "chequeo_dal",
+    "purpose": "revisa DAL, paquetes y versiones"
+  },
+  {
+    "name": "mapa_conexiones",
+    "purpose": "ordena cadenas de conexion y destinos"
+  }
+]

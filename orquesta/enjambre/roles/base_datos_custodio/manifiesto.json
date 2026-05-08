@@ -1,0 +1,19 @@
+{
+  "session_id": "base-datos-custodio",
+  "display_name": "Custodio de Base de Datos",
+  "role_key": "database_keeper",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "DB",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_coder",
+  "model_name": "Qwen3.5-7B-Coder",
+  "conversation_style": "schema_guard",
+  "leader_session_id": "subgerente-trafico-datos",
+  "max_helpers": 5,
+  "responsibilities": [
+    "inspeccionar esquema",
+    "vigilar migraciones",
+    "registrar queries sensibles"
+  ]
+}

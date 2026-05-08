@@ -1,0 +1,26 @@
+[
+  {
+    "assistant_id": "NET-1",
+    "purpose": "operar en paralelo sobre DAL, paquetes, connection strings y pooling"
+  },
+  {
+    "assistant_id": "NET-2",
+    "purpose": "operar en paralelo sobre DAL, paquetes, connection strings y pooling"
+  },
+  {
+    "assistant_id": "NET-3",
+    "purpose": "operar en paralelo sobre DAL, paquetes, connection strings y pooling"
+  },
+  {
+    "assistant_id": "NET-4",
+    "purpose": "operar en paralelo sobre DAL, paquetes, connection strings y pooling"
+  },
+  {
+    "assistant_id": "NET-5",
+    "purpose": "operar en paralelo sobre DAL, paquetes, connection strings y pooling"
+  },
+  {
+    "assistant_id": "NET-6",
+    "purpose": "operar en paralelo sobre DAL, paquetes, connection strings y pooling"
+  }
+]

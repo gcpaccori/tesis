@@ -1,0 +1,19 @@
+{
+  "session_id": "avatar-datos",
+  "display_name": "Avatar de Datos",
+  "role_key": "data_avatar",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "AVATAR DB",
+  "is_team_lead": false,
+  "role_family": "avatar",
+  "model_tier": "avatar",
+  "model_name": "Qwen3.5-7B-1M",
+  "conversation_style": "cartographic_precise",
+  "leader_session_id": "subgerente-trafico-datos",
+  "max_helpers": 2,
+  "responsibilities": [
+    "sostener mapa de bases y esquemas",
+    "responder donde vive cada tabla o llave",
+    "alimentar a backend e integracion con contexto de datos"
+  ]
+}

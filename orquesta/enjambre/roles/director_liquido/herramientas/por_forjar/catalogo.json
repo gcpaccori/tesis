@@ -1,0 +1,6 @@
+[
+  {
+    "name": "interrupt_shield",
+    "need": "redirigir interrupciones hacia Supervisores y Subgerentes de forma automatica"
+  }
+]

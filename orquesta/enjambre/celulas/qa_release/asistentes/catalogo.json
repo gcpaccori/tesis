@@ -1,0 +1,18 @@
+[
+  {
+    "assistant_id": "QA-1",
+    "purpose": "operar en paralelo sobre despliegue controlado y rollback"
+  },
+  {
+    "assistant_id": "QA-2",
+    "purpose": "operar en paralelo sobre despliegue controlado y rollback"
+  },
+  {
+    "assistant_id": "QA-3",
+    "purpose": "operar en paralelo sobre despliegue controlado y rollback"
+  },
+  {
+    "assistant_id": "QA-4",
+    "purpose": "operar en paralelo sobre despliegue controlado y rollback"
+  }
+]

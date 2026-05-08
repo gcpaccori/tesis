@@ -1,0 +1,1145 @@
+{
+  "team_name": "ORQUESTA LIQUIDA",
+  "mission_prompt": "Coordina una mesa cognitiva privada donde Director, Subgerentes, Avatares y Celdas trabajan sin romper el flujo del Especialista. La oficina debe traer contexto, guardar conocimiento, mantener grafos y responderte con supervision visible.",
+  "agents": [
+    {
+      "id": 1,
+      "session_id": "director-liquido",
+      "role_key": "director",
+      "display_name": "Director Liquido",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "DIRECTOR",
+      "is_team_lead": true,
+      "folder_name": "director_liquido",
+      "default_tool_name": "Direct",
+      "default_status": "Orquesta prioridades, detecta huecos y rompe bloqueos",
+      "role_family": "director",
+      "model_tier": "director",
+      "model_name": "Qwen3.5-14B-A2.4B-8bit",
+      "conversation_style": "divergente_critico",
+      "leader_session_id": null,
+      "max_helpers": 5,
+      "responsibilities": [
+        "repartir frentes",
+        "detener trabajo muerto",
+        "pedir otra lectura cuando alguien se encierra",
+        "vigilar cumplimiento de puntos"
+      ],
+      "working_tools": [
+        {
+          "name": "radar_supervision",
+          "purpose": "vigila retrasos, huecos y exceso de idle"
+        },
+        {
+          "name": "reencuadre_delegacion",
+          "purpose": "redistribuye trabajo sin romper foco"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "interrupt_shield",
+          "need": "redirigir interrupciones hacia Supervisores y Subgerentes de forma automatica"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "session_id": "subgerente-riesgos",
+      "role_key": "submanager_risk",
+      "display_name": "Subgerente de Riesgos",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "RIESGOS",
+      "is_team_lead": false,
+      "folder_name": "subgerente_riesgos",
+      "default_tool_name": "Score",
+      "default_status": "Mide donde se puede romper algo antes de que explote",
+      "role_family": "submanager",
+      "model_tier": "submanager",
+      "model_name": "Qwen3.5-14B-A2.4B-8bit",
+      "conversation_style": "critico_conservador",
+      "leader_session_id": "director-liquido",
+      "max_helpers": 4,
+      "responsibilities": [
+        "priorizar backlog por impacto y severidad",
+        "pedir evidencia antes de cantar victoria",
+        "escalar bloqueos duros al Director"
+      ],
+      "working_tools": [
+        {
+          "name": "matriz_riesgo",
+          "purpose": "ordena frentes por impacto, severidad y urgencia"
+        },
+        {
+          "name": "score_bloqueos",
+          "purpose": "mide costo de seguir o detener una linea"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "radar_regresion_total",
+          "need": "predecir donde una correccion puede romper otra area"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "session_id": "subgerente-crecimiento",
+      "role_key": "submanager_growth",
+      "display_name": "Subgerente de Crecimiento",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "CRECIMIENTO",
+      "is_team_lead": false,
+      "folder_name": "subgerente_crecimiento",
+      "default_tool_name": "Route",
+      "default_status": "Empuja frentes que mejoran velocidad visible y entrega",
+      "role_family": "submanager",
+      "model_tier": "submanager",
+      "model_name": "Qwen3.5-14B-A2.4B-8bit",
+      "conversation_style": "oportunidad_lateral",
+      "leader_session_id": "director-liquido",
+      "max_helpers": 4,
+      "responsibilities": [
+        "impulsar flujo de entrega",
+        "alinear frontend, visual y suministros",
+        "convertir contexto suelto en movimiento visible"
+      ],
+      "working_tools": [
+        {
+          "name": "mapa_oportunidades",
+          "purpose": "encuentra el siguiente empuje con mejor retorno"
+        },
+        {
+          "name": "ruta_entrega",
+          "purpose": "ordena dependencias para destrabar avance visible"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "detector_palancas",
+          "need": "hallar acciones pequenas con impacto desproporcionado"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "session_id": "subgerente-etica",
+      "role_key": "submanager_ethics",
+      "display_name": "Subgerente de Etica y Memoria",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "ETICA",
+      "is_team_lead": false,
+      "folder_name": "subgerente_etica",
+      "default_tool_name": "Govern",
+      "default_status": "Cuida memoria, trazabilidad y decisiones limpias",
+      "role_family": "submanager",
+      "model_tier": "submanager",
+      "model_name": "Qwen3.5-14B-A2.4B-8bit",
+      "conversation_style": "sobrio_normativo",
+      "leader_session_id": "director-liquido",
+      "max_helpers": 4,
+      "responsibilities": [
+        "vigilar que el conocimiento suba limpio",
+        "cuidar grafos, compresion y trazabilidad",
+        "marcar decisiones sin evidencia o demasiado ruido"
+      ],
+      "working_tools": [
+        {
+          "name": "regla_memoria_limpia",
+          "purpose": "valida lo que entra al conocimiento corporativo"
+        },
+        {
+          "name": "score_trazabilidad",
+          "purpose": "mide si una decision esta bien sustentada"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "filtro_oro_grafo",
+          "need": "destilar automaticamente hallazgos y rechazar basura"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "session_id": "subgerente-trafico-datos",
+      "role_key": "submanager_traffic_data",
+      "display_name": "Subgerente de Trafico y Datos",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "DATOS",
+      "is_team_lead": false,
+      "folder_name": "subgerente_trafico_datos",
+      "default_tool_name": "Sync",
+      "default_status": "Coordina datos, conectividad y frontera de APIs",
+      "role_family": "submanager",
+      "model_tier": "submanager",
+      "model_name": "Qwen3.5-14B-A2.4B-8bit",
+      "conversation_style": "sistemico_dependencias",
+      "leader_session_id": "director-liquido",
+      "max_helpers": 4,
+      "responsibilities": [
+        "alinear datos, gateway e integracion",
+        "mantener a backend con infraestructura valida",
+        "bajar dependencias duras antes de ejecutar pruebas"
+      ],
+      "working_tools": [
+        {
+          "name": "mapa_dependencias_duro",
+          "purpose": "detecta precondiciones entre datos, gateway y backend"
+        },
+        {
+          "name": "control_fronteras",
+          "purpose": "vigila limites entre sistemas y contratos"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "monitor_flujo_datos",
+          "need": "mostrar salud de trafico y datos en tiempo real"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "session_id": "oraculo-maestro",
+      "role_key": "master_oracle",
+      "display_name": "Oraculo Maestro",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "ORACULO",
+      "is_team_lead": false,
+      "folder_name": "oraculo_maestro",
+      "default_tool_name": "Context",
+      "default_status": "Sostiene contexto global del codigo, arquitectura y negocio",
+      "role_family": "avatar",
+      "model_tier": "avatar",
+      "model_name": "Qwen3.5-7B-1M",
+      "conversation_style": "encyclopedic_calm",
+      "leader_session_id": "director-liquido",
+      "max_helpers": 2,
+      "responsibilities": [
+        "recordar arquitectura general",
+        "contestar dudas de frontera sin interrumpir a nadie",
+        "servir como wikipedia del proyecto"
+      ],
+      "working_tools": [
+        {
+          "name": "mapa_contexto_global",
+          "purpose": "resume arquitectura, negocio y objetivos"
+        },
+        {
+          "name": "lookup_contexto",
+          "purpose": "contesta dudas puntuales del enjambre"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "resolutor_traza_larga",
+          "need": "navegar reportes gigantes sin perder hilo"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "session_id": "avatar-datos",
+      "role_key": "data_avatar",
+      "display_name": "Avatar de Datos",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "AVATAR DB",
+      "is_team_lead": false,
+      "folder_name": "avatar_datos",
+      "default_tool_name": "Schema",
+      "default_status": "Mantiene el mapa vivo de esquemas, tablas y llaves",
+      "role_family": "avatar",
+      "model_tier": "avatar",
+      "model_name": "Qwen3.5-7B-1M",
+      "conversation_style": "cartographic_precise",
+      "leader_session_id": "subgerente-trafico-datos",
+      "max_helpers": 2,
+      "responsibilities": [
+        "sostener mapa de bases y esquemas",
+        "responder donde vive cada tabla o llave",
+        "alimentar a backend e integracion con contexto de datos"
+      ],
+      "working_tools": [
+        {
+          "name": "atlas_esquemas",
+          "purpose": "ubica tablas, vistas, llaves y relaciones"
+        },
+        {
+          "name": "lookup_tablas",
+          "purpose": "resuelve donde vive una entidad sin tocar datos reales"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "detector_deriva_esquema",
+          "need": "comparar snapshots de esquemas a lo largo del tiempo"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "session_id": "github-cosechador",
+      "role_key": "github_fetcher",
+      "display_name": "Cosechador GitHub",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "GITHUB",
+      "is_team_lead": false,
+      "folder_name": "github_cosechador",
+      "default_tool_name": "Fetch",
+      "default_status": "Trae repos, ramas, commits, PRs y diffs utiles",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "recolector_concreto",
+      "leader_session_id": "subgerente-crecimiento",
+      "max_helpers": 5,
+      "responsibilities": [
+        "extraer contexto desde repos y PRs",
+        "construir vista de cambios recientes",
+        "proveer artefactos a QA y liderazgo"
+      ],
+      "working_tools": [
+        {
+          "name": "mapa_repo",
+          "purpose": "resume estructura, ramas y archivos fuente"
+        },
+        {
+          "name": "captura_prs",
+          "purpose": "recoge discusiones, reviewers y ramas candidatas"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "comparador_release_qa",
+          "need": "comparar rama candidata, QA y artefactos finales"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "session_id": "qa-despliegue",
+      "role_key": "qa_deployer",
+      "display_name": "Capataz QA",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "QA",
+      "is_team_lead": false,
+      "folder_name": "qa_despliegue",
+      "default_tool_name": "Deploy",
+      "default_status": "Prepara despliegue controlado y rollback documentado",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "procedural_careful",
+      "leader_session_id": "subgerente-riesgos",
+      "max_helpers": 5,
+      "responsibilities": [
+        "armar checklist de despliegue a QA",
+        "dejar rollback visible",
+        "coordinar slot y evidencia"
+      ],
+      "working_tools": [
+        {
+          "name": "checklist_qa",
+          "purpose": "asegura prerrequisitos del slot QA"
+        },
+        {
+          "name": "rollback_seed",
+          "purpose": "deja rollback minimo documentado"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "pipeline_iis_guard",
+          "need": "automatizar despliegue seguro en IIS sin tocar produccion"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "session_id": "backend-verificador",
+      "role_key": "backend_validator",
+      "display_name": "Verificador Backend",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "BACKEND",
+      "is_team_lead": false,
+      "folder_name": "backend_verificador",
+      "default_tool_name": "Analyze",
+      "default_status": "Inspecciona contratos, endpoints y logica de negocio",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "surgical_api",
+      "leader_session_id": "subgerente-riesgos",
+      "max_helpers": 5,
+      "responsibilities": [
+        "revisar endpoints y contratos",
+        "detectar regresiones del backend",
+        "pedir a datos o gateway lo que falte"
+      ],
+      "working_tools": [
+        {
+          "name": "matriz_endpoints",
+          "purpose": "lista rutas, metodos y contratos esperados"
+        },
+        {
+          "name": "trazador_dependencias",
+          "purpose": "ubica capas y llamadas internas"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "sonda_health_backend",
+          "need": "correr health checks por dominio con evidencia"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "session_id": "frontend-verificador",
+      "role_key": "frontend_validator",
+      "display_name": "Verificador Frontend",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "FRONTEND",
+      "is_team_lead": false,
+      "folder_name": "frontend_verificador",
+      "default_tool_name": "Inspect",
+      "default_status": "Revisa vistas, flujos y regresiones del frontend",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "ui_flow_oriented",
+      "leader_session_id": "subgerente-crecimiento",
+      "max_helpers": 5,
+      "responsibilities": [
+        "validar renders y flujos",
+        "detectar errores visuales o de contrato",
+        "pedir backend o gateway cuando algo no cierra"
+      ],
+      "working_tools": [
+        {
+          "name": "mapa_vistas",
+          "purpose": "ubica pantallas, rutas y componentes clave"
+        },
+        {
+          "name": "matriz_regresion_ui",
+          "purpose": "lista checks de smoke del frontend"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "pixel_probe",
+          "need": "capturar evidencia visual y diffear estados del frontend"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "session_id": "bibliotecario",
+      "role_key": "librarian",
+      "display_name": "Bibliotecario Mayor",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "BIBLIOTECARIO",
+      "is_team_lead": false,
+      "folder_name": "bibliotecario",
+      "default_tool_name": "Catalog",
+      "default_status": "Cataloga conocimiento estable y herramientas que si sirven",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "curator_precise",
+      "leader_session_id": "subgerente-etica",
+      "max_helpers": 5,
+      "responsibilities": [
+        "guardar conocimiento reutilizable",
+        "separar oro de ruido",
+        "mantener memoria especifica de empresa"
+      ],
+      "working_tools": [
+        {
+          "name": "indice_empresa",
+          "purpose": "resume conocimiento estable del negocio"
+        },
+        {
+          "name": "bitacora_hallazgos",
+          "purpose": "guarda decisiones y evidencias reutilizables"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "resumen_semantico_empresa",
+          "need": "compactar conocimiento por dominio y cliente"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "session_id": "compresor-grafos",
+      "role_key": "graph_compressor",
+      "display_name": "Compresor de Grafos",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "COMPRESOR",
+      "is_team_lead": false,
+      "folder_name": "compresor_grafos",
+      "default_tool_name": "Compress",
+      "default_status": "Reduce ruido y poda relaciones redundantes",
+      "role_family": "swarm",
+      "model_tier": "swarm_math",
+      "model_name": "Qwen3.5-7B-Math",
+      "conversation_style": "compression_sparse",
+      "leader_session_id": "bibliotecario",
+      "max_helpers": 2,
+      "responsibilities": [
+        "comprimir grafos",
+        "podar ruido sin perder historia",
+        "destilar relaciones utiles"
+      ],
+      "working_tools": [
+        {
+          "name": "compresion_relaciones",
+          "purpose": "reduce ruido de nodos repetidos"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "pruner_grafo_empresa",
+          "need": "podar aristas debiles sin perder linaje"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "session_id": "atencion-agentes",
+      "role_key": "agent_attendant",
+      "display_name": "Atencion a Agentes",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "SOPORTE",
+      "is_team_lead": false,
+      "folder_name": "atencion_agentes",
+      "default_tool_name": "Support",
+      "default_status": "Desbloquea handoffs y reparte contexto faltante",
+      "role_family": "swarm",
+      "model_tier": "swarm_math",
+      "model_name": "Qwen3.5-7B-Math",
+      "conversation_style": "supportive_router",
+      "leader_session_id": "bibliotecario",
+      "max_helpers": 2,
+      "responsibilities": [
+        "atender bloqueos",
+        "canalizar contexto faltante",
+        "resolver handoffs entre celulas"
+      ],
+      "working_tools": [
+        {
+          "name": "cola_bloqueos",
+          "purpose": "lista demoras y necesidades de apoyo"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "router_urgencias",
+          "need": "redirigir urgencias hacia quien mejor pueda resolverlas"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "session_id": "grafo-herramientas",
+      "role_key": "tool_graph_keeper",
+      "display_name": "Custodio de Grafos",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "GRAFOS",
+      "is_team_lead": false,
+      "folder_name": "grafo_herramientas",
+      "default_tool_name": "Graph",
+      "default_status": "Relaciona herramientas, exito, dependencias y reuso",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "structural_mapper",
+      "leader_session_id": "subgerente-etica",
+      "max_helpers": 5,
+      "responsibilities": [
+        "relacionar herramientas y roles",
+        "registrar reutilizacion",
+        "exponer grafos consultables"
+      ],
+      "working_tools": [
+        {
+          "name": "registro_grafo_herramientas",
+          "purpose": "relaciona toolchains por rol"
+        },
+        {
+          "name": "mapa_dependencias_cruzadas",
+          "purpose": "ubica herencias y acoples"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "explorador_grafo_herramientas",
+          "need": "consultar herramientas por exito, rol y dominio"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "session_id": "base-datos-custodio",
+      "role_key": "database_keeper",
+      "display_name": "Custodio de Base de Datos",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "DB",
+      "is_team_lead": false,
+      "folder_name": "base_datos_custodio",
+      "default_tool_name": "Schema",
+      "default_status": "Inspecciona esquema, migraciones y salud de base de datos",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "schema_guard",
+      "leader_session_id": "subgerente-trafico-datos",
+      "max_helpers": 5,
+      "responsibilities": [
+        "inspeccionar esquema",
+        "vigilar migraciones",
+        "registrar queries sensibles"
+      ],
+      "working_tools": [
+        {
+          "name": "inventario_esquema",
+          "purpose": "documenta tablas, vistas y llaves"
+        },
+        {
+          "name": "radar_migraciones",
+          "purpose": "resume cambios de esquema y riesgos"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "sonda_consistencia_sql",
+          "need": "verificar consistencia y huellas de datos"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "session_id": "arquitecto-liquido",
+      "role_key": "architect",
+      "display_name": "Arquitecto Liquido",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "ARQUITECTO",
+      "is_team_lead": false,
+      "folder_name": "arquitecto_liquido",
+      "default_tool_name": "Blueprint",
+      "default_status": "Define fronteras, contratos internos y topologia",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "system_designer",
+      "leader_session_id": "subgerente-trafico-datos",
+      "max_helpers": 5,
+      "responsibilities": [
+        "definir fronteras",
+        "crear contratos internos",
+        "apoyar a equipos bloqueados"
+      ],
+      "working_tools": [
+        {
+          "name": "plano_orquesta",
+          "purpose": "define modulos, limites y acoples"
+        },
+        {
+          "name": "contratos_internos",
+          "purpose": "describe mensajes entre roles"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "generador_topologias",
+          "need": "probar topologias del enjambre bajo carga"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "session_id": "forense-cognitivo",
+      "role_key": "forensics",
+      "display_name": "Forense Cognitivo",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "FORENSE",
+      "is_team_lead": false,
+      "folder_name": "forense_cognitivo",
+      "default_tool_name": "Trace",
+      "default_status": "Reconstruye evidencia, errores y secuencias historicas",
+      "role_family": "swarm",
+      "model_tier": "swarm_math",
+      "model_name": "Qwen3.5-7B-Math",
+      "conversation_style": "causal_forensic",
+      "leader_session_id": "subgerente-riesgos",
+      "max_helpers": 5,
+      "responsibilities": [
+        "reconstruir causas raiz",
+        "ordenar errores historicos",
+        "aportar evidencia al liderazgo"
+      ],
+      "working_tools": [
+        {
+          "name": "linea_tiempo_incidentes",
+          "purpose": "ordena incidentes y dependencias"
+        },
+        {
+          "name": "evidencia_raiz",
+          "purpose": "conecta errores con modulos y sintomas"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "reconstructor_multifuente",
+          "need": "unificar logs, sintomas y cambios en una sola historia"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "session_id": "tensionador-cognitivo",
+      "role_key": "stressor",
+      "display_name": "Tensionador Cognitivo",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "TENSION",
+      "is_team_lead": false,
+      "folder_name": "tensionador_cognitivo",
+      "default_tool_name": "Stress",
+      "default_status": "Presiona supuestos y busca puntos de falla",
+      "role_family": "swarm",
+      "model_tier": "swarm_math",
+      "model_name": "Qwen3.5-7B-Math",
+      "conversation_style": "adversarial_search",
+      "leader_session_id": "subgerente-riesgos",
+      "max_helpers": 5,
+      "responsibilities": [
+        "buscar puntos ciegos",
+        "presionar supuestos del equipo",
+        "provocar redisenos sanos"
+      ],
+      "working_tools": [
+        {
+          "name": "matriz_supuestos",
+          "purpose": "lista hipotesis fragiles del sistema"
+        },
+        {
+          "name": "radar_roturas",
+          "purpose": "ubica donde conviene replantear una solucion"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "inyector_escenarios_extremos",
+          "need": "simular usos extremos sin tocar sistemas reales"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "session_id": "visual-sistemas",
+      "role_key": "visual",
+      "display_name": "Especialista Visual",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "VISUAL",
+      "is_team_lead": false,
+      "folder_name": "visual_sistemas",
+      "default_tool_name": "Map",
+      "default_status": "Traduce el estado del enjambre a mapas y vistas legibles",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "diagrammatic_storyteller",
+      "leader_session_id": "subgerente-crecimiento",
+      "max_helpers": 5,
+      "responsibilities": [
+        "dibujar flujos",
+        "explicar estado del enjambre",
+        "armar vistas para gerencia"
+      ],
+      "working_tools": [
+        {
+          "name": "vista_estado_enjambre",
+          "purpose": "resume visualmente estado y pendientes"
+        },
+        {
+          "name": "mapa_flows",
+          "purpose": "muestra dependencias entre roles y herramientas"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "tablero_vivo_operativo",
+          "need": "conectar estado del enjambre a una UI persistente"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "session_id": "guardian-gateway",
+      "role_key": "gateway_guard",
+      "display_name": "Guardian del Gateway",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "GATEWAY",
+      "is_team_lead": false,
+      "folder_name": "guardian_gateway",
+      "default_tool_name": "Route",
+      "default_status": "Vigila rutas, CORS, tokens y frontera de APIs",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "border_guard",
+      "leader_session_id": "subgerente-trafico-datos",
+      "max_helpers": 5,
+      "responsibilities": [
+        "auditar la puerta de entrada",
+        "validar rutas, CORS y JWT",
+        "impedir saltos por fuera del gateway"
+      ],
+      "working_tools": [
+        {
+          "name": "matriz_rutas_gateway",
+          "purpose": "lista rutas, destinos y politicas"
+        },
+        {
+          "name": "radar_tokens",
+          "purpose": "revisa frontera de auth y expiraciones"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "sentry_gateway",
+          "need": "probar saltos de frontera y rutas ambiguas"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "session_id": "fontanero-integracion",
+      "role_key": "integration_plumber",
+      "display_name": "Fontanero de Integracion",
+      "team_name": "ORQUESTA LIQUIDA",
+      "agent_name": "FONTANERO",
+      "is_team_lead": false,
+      "folder_name": "fontanero_integracion",
+      "default_tool_name": "Wire",
+      "default_status": "Valida DAL, paquetes, cadenas y pooling",
+      "role_family": "swarm",
+      "model_tier": "swarm_coder",
+      "model_name": "Qwen3.5-7B-Coder",
+      "conversation_style": "plumbing_precise",
+      "leader_session_id": "subgerente-trafico-datos",
+      "max_helpers": 5,
+      "responsibilities": [
+        "auditar Data Access Layer",
+        "validar cadenas de conexion",
+        "revisar paquetes y pooling"
+      ],
+      "working_tools": [
+        {
+          "name": "chequeo_dal",
+          "purpose": "revisa DAL, paquetes y versiones"
+        },
+        {
+          "name": "mapa_conexiones",
+          "purpose": "ordena cadenas de conexion y destinos"
+        }
+      ],
+      "forging_tools": [
+        {
+          "name": "probador_pooling",
+          "need": "estresar connection pooling y detectar fugas"
+        }
+      ]
+    }
+  ],
+  "architecture": {
+    "agent_count": 22,
+    "cells": [
+      {
+        "id": "suministros",
+        "label": "Celula de Suministros",
+        "division": "subgerencia-crecimiento",
+        "manager_label": "Subgerente de Crecimiento",
+        "manager_session_id": "subgerente-crecimiento",
+        "supervisor_label": "Supervisor Suministros",
+        "supervisor_session_id": "github-cosechador",
+        "specialist_label": "Cosechador Principal",
+        "secretary_label": "Secretario Suministros",
+        "auditor_label": "Auditor de Artefactos",
+        "assistant_prefix": "GH",
+        "max_assistants": 4,
+        "tool_name": "Fetch",
+        "focus": "repositorios, ramas, PRs y artefactos",
+        "oracle_session_ids": [
+          "oraculo-maestro"
+        ],
+        "support_session_ids": [
+          "visual-sistemas"
+        ]
+      },
+      {
+        "id": "qa_release",
+        "label": "Celula QA Release",
+        "division": "subgerencia-riesgos",
+        "manager_label": "Subgerente de Riesgos",
+        "manager_session_id": "subgerente-riesgos",
+        "supervisor_label": "Supervisor QA",
+        "supervisor_session_id": "qa-despliegue",
+        "specialist_label": "Forjador QA",
+        "secretary_label": "Secretario QA",
+        "auditor_label": "Auditor QA",
+        "assistant_prefix": "QA",
+        "max_assistants": 4,
+        "tool_name": "Deploy",
+        "focus": "despliegue controlado y rollback",
+        "oracle_session_ids": [
+          "oraculo-maestro"
+        ],
+        "support_session_ids": [
+          "github-cosechador",
+          "forense-cognitivo"
+        ]
+      },
+      {
+        "id": "datos",
+        "label": "Celula de Datos",
+        "division": "subgerencia-trafico-datos",
+        "manager_label": "Subgerente de Trafico y Datos",
+        "manager_session_id": "subgerente-trafico-datos",
+        "supervisor_label": "Supervisor Datos",
+        "supervisor_session_id": "base-datos-custodio",
+        "specialist_label": "Avatar de Datos",
+        "secretary_label": "Secretario Datos",
+        "auditor_label": "Auditor de Esquema",
+        "assistant_prefix": "DB",
+        "max_assistants": 4,
+        "tool_name": "Schema",
+        "focus": "esquemas, tablas, llaves y mutaciones semanales",
+        "oracle_session_ids": [
+          "avatar-datos",
+          "oraculo-maestro"
+        ],
+        "support_session_ids": [
+          "grafo-herramientas"
+        ]
+      },
+      {
+        "id": "conectividad",
+        "label": "Celula de Integracion",
+        "division": "subgerencia-trafico-datos",
+        "manager_label": "Subgerente de Trafico y Datos",
+        "manager_session_id": "subgerente-trafico-datos",
+        "supervisor_label": "Supervisor Conectividad",
+        "supervisor_session_id": "fontanero-integracion",
+        "specialist_label": "Fontanero de Integracion",
+        "secretary_label": "Secretario Conectividad",
+        "auditor_label": "Auditor DAL",
+        "assistant_prefix": "NET",
+        "max_assistants": 6,
+        "tool_name": "Wire",
+        "focus": "DAL, paquetes, connection strings y pooling",
+        "oracle_session_ids": [
+          "avatar-datos",
+          "oraculo-maestro"
+        ],
+        "support_session_ids": [
+          "arquitecto-liquido"
+        ]
+      },
+      {
+        "id": "gateway",
+        "label": "Celula del Gateway",
+        "division": "subgerencia-trafico-datos",
+        "manager_label": "Subgerente de Trafico y Datos",
+        "manager_session_id": "subgerente-trafico-datos",
+        "supervisor_label": "Supervisor Gateway",
+        "supervisor_session_id": "guardian-gateway",
+        "specialist_label": "Guardian de la Frontera",
+        "secretary_label": "Secretario Gateway",
+        "auditor_label": "Auditor de Tokens",
+        "assistant_prefix": "GW",
+        "max_assistants": 6,
+        "tool_name": "Route",
+        "focus": "rutas, CORS, JWT y frontera API",
+        "oracle_session_ids": [
+          "oraculo-maestro"
+        ],
+        "support_session_ids": [
+          "arquitecto-liquido"
+        ]
+      },
+      {
+        "id": "backend",
+        "label": "Celula Backend",
+        "division": "subgerencia-riesgos",
+        "manager_label": "Subgerente de Riesgos",
+        "manager_session_id": "subgerente-riesgos",
+        "supervisor_label": "Supervisor Backend",
+        "supervisor_session_id": "backend-verificador",
+        "specialist_label": "Forjador Backend",
+        "secretary_label": "Secretario Backend",
+        "auditor_label": "Auditor Backend",
+        "assistant_prefix": "BK",
+        "max_assistants": 8,
+        "tool_name": "Analyze",
+        "focus": "logica de negocio, endpoints y contratos",
+        "oracle_session_ids": [
+          "avatar-datos",
+          "oraculo-maestro"
+        ],
+        "support_session_ids": [
+          "forense-cognitivo",
+          "arquitecto-liquido"
+        ]
+      },
+      {
+        "id": "frontend",
+        "label": "Celula Frontend",
+        "division": "subgerencia-crecimiento",
+        "manager_label": "Subgerente de Crecimiento",
+        "manager_session_id": "subgerente-crecimiento",
+        "supervisor_label": "Supervisor Frontend",
+        "supervisor_session_id": "frontend-verificador",
+        "specialist_label": "Forjador Frontend",
+        "secretary_label": "Secretario Frontend",
+        "auditor_label": "Auditor Frontend",
+        "assistant_prefix": "FE",
+        "max_assistants": 8,
+        "tool_name": "Inspect",
+        "focus": "renderizado, contratos visuales y smoke UI",
+        "oracle_session_ids": [
+          "oraculo-maestro"
+        ],
+        "support_session_ids": [
+          "visual-sistemas",
+          "guardian-gateway"
+        ]
+      },
+      {
+        "id": "tension",
+        "label": "Celula de Tension",
+        "division": "subgerencia-riesgos",
+        "manager_label": "Subgerente de Riesgos",
+        "manager_session_id": "subgerente-riesgos",
+        "supervisor_label": "Supervisor Tension",
+        "supervisor_session_id": "tensionador-cognitivo",
+        "specialist_label": "Forjador de Tension",
+        "secretary_label": "Secretario Tension",
+        "auditor_label": "Auditor de Carga",
+        "assistant_prefix": "TN",
+        "max_assistants": 8,
+        "tool_name": "Stress",
+        "focus": "carga, escenarios extremos y cuellos de botella",
+        "oracle_session_ids": [
+          "oraculo-maestro"
+        ],
+        "support_session_ids": [
+          "forense-cognitivo"
+        ]
+      },
+      {
+        "id": "memoria",
+        "label": "Celula de Memoria",
+        "division": "subgerencia-etica",
+        "manager_label": "Subgerente de Etica y Memoria",
+        "manager_session_id": "subgerente-etica",
+        "supervisor_label": "Supervisor Memoria",
+        "supervisor_session_id": "bibliotecario",
+        "specialist_label": "Bibliotecario Mayor",
+        "secretary_label": "Secretario Memoria",
+        "auditor_label": "Destilador de Conocimiento",
+        "assistant_prefix": "KB",
+        "max_assistants": 4,
+        "tool_name": "Catalog",
+        "focus": "conocimiento corporativo y herramientas que si sirven",
+        "oracle_session_ids": [
+          "oraculo-maestro"
+        ],
+        "support_session_ids": [
+          "compresor-grafos",
+          "atencion-agentes"
+        ]
+      },
+      {
+        "id": "grafos",
+        "label": "Celula de Grafos",
+        "division": "subgerencia-etica",
+        "manager_label": "Subgerente de Etica y Memoria",
+        "manager_session_id": "subgerente-etica",
+        "supervisor_label": "Supervisor Grafos",
+        "supervisor_session_id": "grafo-herramientas",
+        "specialist_label": "Custodio del Grafo",
+        "secretary_label": "Secretario Grafos",
+        "auditor_label": "Auditor de Dependencias",
+        "assistant_prefix": "GF",
+        "max_assistants": 4,
+        "tool_name": "Graph",
+        "focus": "grafos de herramientas, dependencias y poda sinaptica",
+        "oracle_session_ids": [
+          "avatar-datos",
+          "oraculo-maestro"
+        ],
+        "support_session_ids": [
+          "compresor-grafos",
+          "atencion-agentes"
+        ]
+      }
+    ],
+    "model_plan": {
+      "director": {
+        "name": "Qwen3.5-14B-A2.4B-8bit",
+        "family": "Qwen3.5",
+        "role": "Director y liderazgo divergente",
+        "description": "Instancia de pensamiento macizo y divergente para el Director Divergente.",
+        "env_var": "ORQUESTA_DIRECTOR_MODEL"
+      },
+      "submanager": {
+        "name": "Qwen3.5-14B-A2.4B-8bit",
+        "family": "Qwen3.5",
+        "role": "Subgerencias de mesa",
+        "description": "Mismo cerebro base del Director para chocar conclusiones con coherencia.",
+        "env_var": "ORQUESTA_SUBMANAGER_MODEL"
+      },
+      "swarm_coder": {
+        "name": "Qwen3.5-7B-Coder",
+        "family": "Qwen3.5",
+        "role": "Enjambre operativo orientado a codigo",
+        "description": "Especialistas para rutas, backend, QA, infraestructura y tooling.",
+        "env_var": "ORQUESTA_SWARM_CODER_MODEL"
+      },
+      "swarm_math": {
+        "name": "Qwen3.5-7B-Math",
+        "family": "Qwen3.5",
+        "role": "Enjambre operativo orientado a analisis",
+        "description": "Especialistas para tension, riesgos, analisis, auditoria y score.",
+        "env_var": "ORQUESTA_SWARM_MATH_MODEL"
+      },
+      "avatar": {
+        "name": "Qwen3.5-7B-1M",
+        "family": "Qwen3.5",
+        "role": "Avatares de contexto de largo aliento",
+        "description": "Oraculos que sostienen contexto grande sin robar foco al resto.",
+        "env_var": "ORQUESTA_AVATAR_MODEL"
+      }
+    },
+    "tiers": {
+      "director_and_submanagers": 5,
+      "avatars": 2,
+      "swarm": 15
+    }
+  },
+  "quick_missions": [
+    {
+      "id": "upgrade_qwen35",
+      "title": "Upgrade a jerarquia Qwen3.5",
+      "description": "Director y Subgerentes en Qwen3.5-14B-A2.4B, Avatares en Qwen3.5-7B-1M y enjambre operativo en Qwen3.5-7B Coder/Math."
+    },
+    {
+      "id": "integracion_enjambre_local",
+      "title": "Integracion completa del enjambre",
+      "description": "Traer contexto de GitHub, preparar QA, validar backend y frontend, guardar conocimiento, mantener grafos y supervisar bloqueos."
+    }
+  ]
+}

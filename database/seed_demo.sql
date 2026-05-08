@@ -1,0 +1,2 @@
+-- Semilla de referencia. El backend inserta datos demo equivalentes al iniciar
+-- si backend/data/tesis.db aun no existe o no contiene imagenes.

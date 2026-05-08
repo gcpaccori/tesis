@@ -1,0 +1,293 @@
+services:
+  memgraph:
+    image: memgraph/memgraph:latest
+    container_name: qa-memgraph
+    restart: unless-stopped
+    user: "0:0"
+    command:
+      - --bolt-port=7687
+      - --log-level=INFO
+    volumes:
+      - ./runtime/memgraph-etc:/etc/memgraph
+      - ./runtime/memgraph-data:/var/lib/memgraph
+      - ./runtime/memgraph-log:/var/log/memgraph
+    networks:
+      - qa_agent_network
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: qa-ollama
+    restart: unless-stopped
+    security_opt:
+      - label=disable
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+      OLLAMA_NUM_PARALLEL: ${OLLAMA_NUM_PARALLEL}
+      OLLAMA_KEEP_ALIVE: ${OLLAMA_KEEP_ALIVE}
+      OLLAMA_MAX_LOADED_MODELS: ${OLLAMA_MAX_LOADED_MODELS}
+      CUDA_VISIBLE_DEVICES: "GPU-5bc71393-07a5-eb6e-cc06-af2986d01b2e,GPU-04c137da-4c35-1a27-5f2c-34d4b9a0e264"
+      LD_LIBRARY_PATH: /usr/lib
+    volumes:
+      - ollama-data:/root/.ollama
+      - /lib64/libcuda.so.1:/usr/lib/libcuda.so.1:ro
+      - /lib64/libcuda.so:/usr/lib/libcuda.so:ro
+      - /lib64/libnvidia-ml.so.1:/usr/lib/libnvidia-ml.so.1:ro
+      - /lib64/libnvidia-ml.so:/usr/lib/libnvidia-ml.so:ro
+    devices:
+      - /dev/nvidia6
+      - /dev/nvidia7
+      - /dev/nvidiactl
+      - /dev/nvidia-modeset
+      - /dev/nvidia-uvm
+      - /dev/nvidia-uvm-tools
+    networks:
+      - qa_agent_network
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list >/dev/null 2>&1 || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+
+  ollama-pull:
+    image: ollama/ollama:latest
+    container_name: qa-ollama-pull
+    restart: "no"
+    depends_on:
+      ollama:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-lc"]
+    command: >
+      "
+      sleep 15 &&
+      ollama pull ${OLLAMA_MODEL}
+      "
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - qa_agent_network
+
+  langflow:
+    image: langflowai/langflow:latest
+    container_name: qa-langflow
+    restart: unless-stopped
+    user: "0:0"
+    depends_on:
+      ollama:
+        condition: service_started
+    environment:
+      LANGFLOW_DATABASE_URL: ${LANGFLOW_DATABASE_URL}
+      LANGFLOW_HOST: 0.0.0.0
+      LANGFLOW_PORT: 7860
+      LANGFLOW_AUTO_LOGIN: "true"
+      LANGFLOW_SKIP_AUTH_AUTO_LOGIN: "true"
+      LANGFLOW_CONFIG_DIR: /app/langflow
+      LANGFLOW_ALLOW_CUSTOM_COMPONENTS: "true"
+      LANGFLOW_COMPONENTS_PATH: /app/custom_components
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL}
+    ports:
+      - "127.0.0.1:${LANGFLOW_PORT}:7860"
+    volumes:
+      - ./runtime/langflow-data:/app/langflow
+      - ./custom_components:/app/custom_components:ro
+    networks:
+      - qa_agent_network
+
+  qa-runner:
+    build:
+      context: ./qa-runner
+    container_name: qa-runner
+    restart: unless-stopped
+    user: "0:0"
+    depends_on:
+      memgraph:
+        condition: service_started
+    environment:
+      QA_RUNNER_WORKDIR: /work
+      QA_RUNNER_STEP_TIMEOUT_SECONDS: 900
+      MEMGRAPH_URI: bolt://memgraph:7687
+    ports:
+      - "127.0.0.1:8090:8090"
+    volumes:
+      - ./runtime/qa-runner:/work
+    networks:
+      qa_agent_network:
+        aliases:
+          - qa-runner.local
+
+  kimi-k2-6:
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
+    container_name: qa-kimi-k2-6
+    profiles:
+      - kimi
+    restart: "no"
+    healthcheck:
+      disable: true
+    security_opt:
+      - label=disable
+    environment:
+      CUDA_DEVICE_ORDER: PCI_BUS_ID
+      CUDA_VISIBLE_DEVICES: "0,1,2,3,4,5"
+      NVIDIA_VISIBLE_DEVICES: "0,1,2,3,4,5"
+      LD_LIBRARY_PATH: /usr/lib:/usr/local/cuda/lib64
+    command:
+      - --model
+      - /models/kimi-repo/snapshots/47c7cab1e440dd9fcfc57c469e4737983408a6f2/UD-Q2_K_XL/Kimi-K2.6-UD-Q2_K_XL-00001-of-00008.gguf
+      - --alias
+      - kimi-k2.6-q2
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8021"
+      - --ctx-size
+      - "32768"
+      - --parallel
+      - "2"
+      - --threads
+      - "192"
+      - --threads-batch
+      - "192"
+      - --batch-size
+      - "1024"
+      - --ubatch-size
+      - "256"
+      - --flash-attn
+      - "on"
+      - --split-mode
+      - row
+      - --tensor-split
+      - "1,1,1,1,1,1"
+      - --n-gpu-layers
+      - "32"
+      - --cache-type-k
+      - q8_0
+      - --cache-type-v
+      - q8_0
+    ports:
+      - "127.0.0.1:8021:8021"
+    volumes:
+      - /home/u23u/.cache/huggingface/hub/models--unsloth--Kimi-K2.6-GGUF:/models/kimi-repo:ro
+      - /lib64/libcuda.so.1:/usr/lib/libcuda.so.1:ro
+      - /lib64/libcuda.so:/usr/lib/libcuda.so:ro
+      - /lib64/libnvidia-ml.so.1:/usr/lib/libnvidia-ml.so.1:ro
+      - /lib64/libnvidia-ml.so:/usr/lib/libnvidia-ml.so:ro
+    devices:
+      - /dev/nvidia0
+      - /dev/nvidia1
+      - /dev/nvidia2
+      - /dev/nvidia3
+      - /dev/nvidia6
+      - /dev/nvidia7
+      - /dev/nvidiactl
+      - /dev/nvidia-modeset
+      - /dev/nvidia-uvm
+      - /dev/nvidia-uvm-tools
+    networks:
+      qa_agent_network:
+        aliases:
+          - kimi.local
+
+  kimi-proxy:
+    image: langflowai/langflow:latest
+    container_name: qa-kimi-proxy
+    profiles:
+      - kimi
+    restart: unless-stopped
+    user: "0:0"
+    depends_on:
+      kimi-k2-6:
+        condition: service_started
+    environment:
+      KIMI_UPSTREAM_BASE_URL: http://kimi.local:8021/v1
+      KIMI_DEFAULT_MODEL: kimi-k2.6-q2
+    command:
+      - python
+      - -m
+      - uvicorn
+      - kimi_openai_proxy:app
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8031"
+    ports:
+      - "127.0.0.1:8031:8031"
+    volumes:
+      - ./kimi_openai_proxy.py:/app/kimi_openai_proxy.py:ro
+    working_dir: /app
+    networks:
+      qa_agent_network:
+        aliases:
+          - kimi-proxy.local
+
+  deepseek-v4-pro:
+    image: docker.io/vllm/vllm-openai:deepseekv4-cu130
+    container_name: qa-deepseek-v4-pro
+    profiles:
+      - deepseek-pro
+    restart: "no"
+    ipc: host
+    security_opt:
+      - label=disable
+    environment:
+      CUDA_VISIBLE_DEVICES: "0,1,2,3"
+      HF_HOME: /hf-cache
+      LD_LIBRARY_PATH: /usr/local/cuda-13.0/compat:/usr/local/nvidia/lib64:/usr/local/cuda/lib64:/usr/local/cuda-13.0/lib64
+      NCCL_P2P_DISABLE: "1"
+      NCCL_IB_DISABLE: "1"
+      VLLM_USE_DEEP_GEMM: "0"
+      VLLM_USE_DEEP_GEMM_E8M0: "0"
+      VLLM_MOE_USE_DEEP_GEMM: "0"
+      VLLM_ATTENTION_BACKEND: FLASHINFER_MLA_SPARSE
+      PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True
+    command:
+      - /models/deepseek-v4-pro
+      - --served-model-name
+      - deepseek-v4-pro
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8020"
+      - --trust-remote-code
+      - --enforce-eager
+      - --disable-custom-all-reduce
+      - --tensor-parallel-size
+      - "4"
+      - --max-model-len
+      - "32768"
+      - --attention-backend
+      - FLASHINFER_MLA_SPARSE
+      - --kv-cache-dtype
+      - fp8
+      - --block-size
+      - "256"
+      - --gpu-memory-utilization
+      - "0.82"
+      - --cpu-offload-gb
+      - "220"
+      - --enable-chunked-prefill
+    ports:
+      - "127.0.0.1:8020:8020"
+    volumes:
+      - /home/u23u/models/deepseek-v4-pro:/models/deepseek-v4-pro:ro
+      - /home/u23u/.cache/huggingface:/hf-cache
+      - /lib64/libnvidia-ml.so.1:/usr/local/nvidia/lib64/libnvidia-ml.so.1:ro
+      - /lib64/libnvidia-ml.so:/usr/local/nvidia/lib64/libnvidia-ml.so:ro
+    devices:
+      - /dev/nvidia0
+      - /dev/nvidia1
+      - /dev/nvidia2
+      - /dev/nvidia3
+      - /dev/nvidiactl
+      - /dev/nvidia-modeset
+      - /dev/nvidia-uvm
+      - /dev/nvidia-uvm-tools
+    networks:
+      qa_agent_network:
+        aliases:
+          - deepseek-pro.local
+
+networks:
+  qa_agent_network:
+    name: qa_agent_network
+
+volumes:
+  ollama-data:

@@ -1,0 +1,10 @@
+[
+  {
+    "name": "inventario_esquema",
+    "purpose": "documenta tablas, vistas y llaves"
+  },
+  {
+    "name": "radar_migraciones",
+    "purpose": "resume cambios de esquema y riesgos"
+  }
+]

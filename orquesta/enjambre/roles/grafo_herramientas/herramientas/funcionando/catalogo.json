@@ -1,0 +1,10 @@
+[
+  {
+    "name": "registro_grafo_herramientas",
+    "purpose": "relaciona toolchains por rol"
+  },
+  {
+    "name": "mapa_dependencias_cruzadas",
+    "purpose": "ubica herencias y acoples"
+  }
+]

@@ -1,0 +1,6 @@
+[
+  {
+    "name": "probador_pooling",
+    "need": "estresar connection pooling y detectar fugas"
+  }
+]

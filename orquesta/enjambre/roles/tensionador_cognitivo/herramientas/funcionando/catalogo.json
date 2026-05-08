@@ -1,0 +1,10 @@
+[
+  {
+    "name": "matriz_supuestos",
+    "purpose": "lista hipotesis fragiles del sistema"
+  },
+  {
+    "name": "radar_roturas",
+    "purpose": "ubica donde conviene replantear una solucion"
+  }
+]

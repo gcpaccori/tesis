@@ -1,0 +1,10 @@
+[
+  {
+    "name": "mapa_vistas",
+    "purpose": "ubica pantallas, rutas y componentes clave"
+  },
+  {
+    "name": "matriz_regresion_ui",
+    "purpose": "lista checks de smoke del frontend"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "session_id": "frontend-verificador",
+  "display_name": "Verificador Frontend",
+  "role_key": "frontend_validator",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "FRONTEND",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_coder",
+  "model_name": "Qwen3.5-7B-Coder",
+  "conversation_style": "ui_flow_oriented",
+  "leader_session_id": "subgerente-crecimiento",
+  "max_helpers": 5,
+  "responsibilities": [
+    "validar renders y flujos",
+    "detectar errores visuales o de contrato",
+    "pedir backend o gateway cuando algo no cierra"
+  ]
+}

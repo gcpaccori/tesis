@@ -1,0 +1,19 @@
+{
+  "session_id": "guardian-gateway",
+  "display_name": "Guardian del Gateway",
+  "role_key": "gateway_guard",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "GATEWAY",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_coder",
+  "model_name": "Qwen3.5-7B-Coder",
+  "conversation_style": "border_guard",
+  "leader_session_id": "subgerente-trafico-datos",
+  "max_helpers": 5,
+  "responsibilities": [
+    "auditar la puerta de entrada",
+    "validar rutas, CORS y JWT",
+    "impedir saltos por fuera del gateway"
+  ]
+}

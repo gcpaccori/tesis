@@ -1,0 +1,10 @@
+[
+  {
+    "name": "plano_orquesta",
+    "purpose": "define modulos, limites y acoples"
+  },
+  {
+    "name": "contratos_internos",
+    "purpose": "describe mensajes entre roles"
+  }
+]

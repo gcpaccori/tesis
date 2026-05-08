@@ -1,0 +1,19 @@
+{
+  "session_id": "tensionador-cognitivo",
+  "display_name": "Tensionador Cognitivo",
+  "role_key": "stressor",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "TENSION",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_math",
+  "model_name": "Qwen3.5-7B-Math",
+  "conversation_style": "adversarial_search",
+  "leader_session_id": "subgerente-riesgos",
+  "max_helpers": 5,
+  "responsibilities": [
+    "buscar puntos ciegos",
+    "presionar supuestos del equipo",
+    "provocar redisenos sanos"
+  ]
+}

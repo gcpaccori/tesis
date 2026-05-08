@@ -1,0 +1,10 @@
+[
+  {
+    "name": "vista_estado_enjambre",
+    "purpose": "resume visualmente estado y pendientes"
+  },
+  {
+    "name": "mapa_flows",
+    "purpose": "muestra dependencias entre roles y herramientas"
+  }
+]

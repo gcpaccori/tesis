@@ -1,0 +1,19 @@
+{
+  "session_id": "grafo-herramientas",
+  "display_name": "Custodio de Grafos",
+  "role_key": "tool_graph_keeper",
+  "team_name": "ORQUESTA LIQUIDA",
+  "agent_name": "GRAFOS",
+  "is_team_lead": false,
+  "role_family": "swarm",
+  "model_tier": "swarm_coder",
+  "model_name": "Qwen3.5-7B-Coder",
+  "conversation_style": "structural_mapper",
+  "leader_session_id": "subgerente-etica",
+  "max_helpers": 5,
+  "responsibilities": [
+    "relacionar herramientas y roles",
+    "registrar reutilizacion",
+    "exponer grafos consultables"
+  ]
+}

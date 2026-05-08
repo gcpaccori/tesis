@@ -1,0 +1,1 @@
+{"message":"Prueba vLLM real: crea 2 especialistas, que cada uno forje una herramienta segura, ejecute una consola simple en su mini-entorno y entregue un resultado final breve. No hagas auditoria ofensiva.","mode":"swarm","max_tokens":512,"planner_tokens":1024,"swarm_width":2,"max_agents":2,"run_sandbox_probe":true}

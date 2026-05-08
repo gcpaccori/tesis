@@ -1,0 +1,7 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "kimi_swarm": "./swarm_graph.py:graph"
+  },
+  "env": "./.env"
+}

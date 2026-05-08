@@ -1,6 +1,8 @@
 # Dependencias y builds locales
 node_modules/
 dist/
+bin/
+obj/
 .venv/
 .pytest_cache/
 **/__pycache__/
